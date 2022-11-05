@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectsController;
+
 use App\Http\Middleware\AdminMiddleware;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function() {
 Route::group(['middleware' => 'auth'], function(){
 
    
+    Route::resource('projects', ProjectsController::class);
 
     Route::get('/dashboard', function () {
         return view('dashboard');
