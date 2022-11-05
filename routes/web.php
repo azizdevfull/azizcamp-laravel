@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +20,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    if(Auth::user()->admin == 1){
-    return view('admin.dashboard');
-        
-    }
-    return view('dashboard');
 
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function() {
+
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+});
+
+Route::group(['middleware' => 'auth'], function(){
+
+   
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    
+    })->name('dashboard');
+    
+    Route::view('profile', 'profile')->name('profile');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 
 require __DIR__.'/auth.php';
