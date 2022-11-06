@@ -10,10 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-whte iborder-b border-gray-200">
                    
-                    @foreach (Auth::user()->projects as $project)
-                        <h1>{{ $project->name }}</h1> <br>
-                        <h3> {{ $project->description }} </h3>
-                    @endforeach
+                    <a style="color: aqua" href="{{ url('projects') }}">Projects</a>
+
+
                 </div>
             </div>
         </div>

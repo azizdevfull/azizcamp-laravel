@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project Show | {{ $project->name }}</title>
-</head>
-<body>
-    
+<x-layout>
     <label for="">Project Name</label>
     <p>{{ $project->name }}</p> <br>
     <label for="">Project Description</label>
@@ -21,8 +12,7 @@
     <form action="{{ route('projects.destroy',$project->id) }}" method="Post">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
     </form>
 
-</body>
-</html>
+</x-layout>

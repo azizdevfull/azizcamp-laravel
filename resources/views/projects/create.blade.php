@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Project Create</title>
-</head>
-<body>
-    
-    <form action="{{ route('projects.store') }}" method="POST">
-        @csrf
-        <input type="text" name="name" required>
-        <input type="text" name="description" required>
-        <input type="submit" value="Create Project">
-    </form>
+<x-layout>
+    <x-slot:title>
+        Create Project
+    </x-slot>
+    <div class="container">
 
-</body>
-</html>
+        <form align="center" action="{{ route('projects.store') }}" method="POST" class="mt-5" style="width: 120px; justify-content: center;">
+            @csrf
+            <input class="form-control" type="text" name="name" required> <br>
+            <textarea name="description"  cols="30" rows="10" required></textarea><br>
+            <input class="btn btn-primary" type="submit" value="Create Project">
+        </form>
+    </div>
+
+
+</x-layout>
+    
+    
