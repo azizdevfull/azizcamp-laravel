@@ -21,7 +21,7 @@
             
             <tr>
                 <td>{{ $attacher->name }}</td>
-                <td>{{ $attacher->file }}</td>
+                <td><img src="/attachment/{{ $attacher->file }}" width="100px"></td>
                 <td>{{ $attacher->project->name  }}</td>
                 <td>{{ $attacher->project->user->name  }}</td>
                 <td>

@@ -43,15 +43,35 @@ class AttachersController extends Controller
      */
     public function store(Request $request, Project $project)
     {
+        // $message = [
+        //     'requred' => 'Please Select File',
+        // ];
+        // $this->validate($request, [
+        //     'file' => 'required',
+        // ], $message);
 
-        Attacher::create($request->all() + ['project_id' => $project->id]);
+        // foreach ($request->file as $file) {
+        //     $filename = time().'_'.$file->getClientOriginalName();
+        //     $filesize = $file->getSize();
+        //     $file->storeAs('public/', $filename);
+        //     $filemodel = new Attacher;
+        //     $filemodel->name = $filename;
+        //     $filemodel->file = 'storage/'.$filename;
+        //     $filemodel->project_id = $project->id;
+        //     $filemodel->save();
+        // }
+        $file = $request->file;
+        $filename = time().'_'.$file->getClientOriginalName();
+        $attacher = new Attacher;
+        $attacher->name = $request->name;
+        $request->file->move('attachment',$filename);
+        $attacher->file = $filename;
+        $attacher->project_id = $project->id;
+        $attacher->save();
+
+        // Attacher::create($request->all() + ['project_id' => $project->id]);
         return redirect()->route('projects.attachers.index', $project->id);
-        // $project = Project::find($id);
-        // $attacher = new $project->attachers();
-        // $attacher->project_id = $project->id;
-        // $attacher->name = $request->name;
 
-        // $project->attachers()->save($attacher);
     }
 
     /**
@@ -86,7 +106,23 @@ class AttachersController extends Controller
      */
     public function update($project_id, Request $request, Attacher $attacher)
     {
-        $attacher->update($request->all());
+        $request->validate([
+            'name' => 'required'
+            ]);
+            
+            $input = $request->all();
+            
+            if ($image = $request->file('file')) {
+            $destinationPath = 'attachment/';
+            $profileImage = time().'_'.$image->getClientOriginalName();
+            $image->move($destinationPath, $profileImage);
+            $input['file'] = "$profileImage";
+            }else{
+            unset($input['file']);
+            }
+            
+            $attacher->update($input);
+
         return redirect()->route('projects.attachers.index', $project_id);
     }
 
