@@ -20,4 +20,9 @@ class project extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function attachers()
+    {
+        return $this->hasMany(Attacher::class);
+    }
+
 }

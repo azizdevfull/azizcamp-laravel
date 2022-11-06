@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttachersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'auth'], function(){
 
    
     Route::resource('projects', ProjectsController::class);
-
+    Route::resource('projects.attachers', AttachersController::class);
     Route::get('/dashboard', function () {
         return view('dashboard');
     
