@@ -60,9 +60,9 @@ class AttachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($project_id, Attacher $attacher)
     {
-        //
+        return view('attachers.show', compact('project_id', 'attacher'));
     }
 
     /**
@@ -71,9 +71,10 @@ class AttachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($project_id, Attacher $attacher)
     {
-        //
+        return view('attachers.edit', compact('project_id', 'attacher'));
+
     }
 
     /**
@@ -83,9 +84,10 @@ class AttachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($project_id, Request $request, Attacher $attacher)
     {
-        //
+        $attacher->update($request->all());
+        return redirect()->route('projects.attachers.index', $project_id);
     }
 
     /**
@@ -94,8 +96,9 @@ class AttachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($project_id, Attacher $attacher)
     {
-        //
+        $attacher->delete();
+        return redirect()->back();
     }
 }
