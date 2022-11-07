@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttachersController;
+use App\Http\Controllers\DiscussionsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -34,12 +35,11 @@ Route::group(['middleware' => 'auth'], function(){
 
    
     Route::resource('projects', ProjectsController::class);
+    Route::resource('discussions', DiscussionsController::class);
+
     Route::resource('projects.attachers', AttachersController::class);
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    
-    })->name('dashboard');
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     
     Route::view('profile', 'profile')->name('profile');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
