@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->string('project_id');
             $table->timestamps();
         });
     }

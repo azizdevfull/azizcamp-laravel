@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discussion;
 use Illuminate\Http\Request;
+use App\Models\project;
+use Illuminate\Support\Facades\View;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project as XmlProject;
+
+// use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class DiscussionsController extends Controller
 {
@@ -11,9 +17,13 @@ class DiscussionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $project = Project::find($id);
+
+        $discussions = Discussion::where('project_id',$project->id)->get();
+        
+        return view('discussions.index', compact('project','discussions'));
     }
 
     /**
@@ -21,9 +31,9 @@ class DiscussionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        //
+        return View::make('discussions.create', compact('project'));
     }
 
     /**
@@ -32,9 +42,18 @@ class DiscussionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Project $project)
     {
-        //
+        // $file = $request->file;
+        // $filename = time().'_'.$file->getClientOriginalName();
+        $discussion = new Discussion();
+        $discussion->title = $request->title;
+        $discussion->description = $request->description;
+        $discussion->project_id = $project->id;
+        $discussion->save();
+
+        // Attacher::create($request->all() + ['project_id' => $project->id]);
+        return redirect()->route('discussions.show',$discussion->id);
     }
 
     /**
@@ -45,7 +64,8 @@ class DiscussionsController extends Controller
      */
     public function show($id)
     {
-        //
+        $discussion = Discussion::find($id);
+        return view('discussions.show',compact('discussion'));
     }
 
     /**

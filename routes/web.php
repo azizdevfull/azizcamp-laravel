@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('discussions', DiscussionsController::class);
 
     Route::resource('projects.attachers', AttachersController::class);
+    Route::resource('projects.discussions', DiscussionsController::class);
+
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     

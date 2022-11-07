@@ -55,8 +55,14 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
+        if($project->user_id == Auth::id()){
 
-        return view('projects.show', compact('project'));
+            return view('projects.show', compact('project'));
+        }
+        else{
+            return redirect()->route('projects.index');
+        }
+
     }
 
     /**
