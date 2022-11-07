@@ -15,4 +15,7 @@
         <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
     </form>
 
+    <br><br>
+    <a class="btn btn-primary" href="{{ route('projects.attachers.index',$project->id) }}">Attachments</a> <br> <br>
+    <a class="btn btn-primary mt-5" href="{{ route('projects.discussions.index',$project->id) }}">Discussions</a>
 </x-layout>

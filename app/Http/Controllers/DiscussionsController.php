@@ -76,7 +76,8 @@ class DiscussionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $discussion = Discussion::find($id);
+        return view('discussions.edit', compact('discussion'));
     }
 
     /**
@@ -88,7 +89,12 @@ class DiscussionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $discussion = Discussion::find($id);
+        $discussion->title = $request->title;
+        $discussion->description = $request->description;
+        $discussion->save();
+        return redirect()->route('discussions.show',$discussion->id);
     }
 
     /**
@@ -99,6 +105,9 @@ class DiscussionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discussion = Discussion::find($id);
+        $project = $discussion->project_id;
+        $discussion->delete();
+        return redirect()->route('projects.discussions.index',$project);
     }
 }
