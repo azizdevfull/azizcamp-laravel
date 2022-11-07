@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
-
+use App\Http\Controllers\DownloadFileController;
 use App\Http\Middleware\AdminMiddleware;
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function(){
    
     Route::resource('projects', ProjectsController::class);
     Route::resource('projects.attachers', AttachersController::class);
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     

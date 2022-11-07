@@ -21,7 +21,10 @@
             
             <tr>
                 <td>{{ $attacher->name }}</td>
-                <td><img src="/attachment/{{ $attacher->file }}" width="100px"></td>
+                <td><a href="/attachment/{{ $attacher->file }}" width="100px" target="_blank" download>
+                Download
+                </a>
+                </td>
                 <td>{{ $attacher->project->name  }}</td>
                 <td>{{ $attacher->project->user->name  }}</td>
                 <td>
