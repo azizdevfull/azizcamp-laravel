@@ -19,7 +19,7 @@
                     @foreach ($projects as $project)
                             @if($discussion->project_id == $project->id)
 
-                                @if (Auth::id() == $project->user_id){
+                                @if (Auth::id() == $project->user_id)
                                     <td>
                                         <a class="btn btn-success" href="{{ route('discussions.edit', $discussion->id) }}">Edit</a>
                                     </td>

@@ -64,10 +64,15 @@ class DiscussionsController extends Controller
      */
     public function show($id)
     {
-        $projects = Project::all();
         $discussion = Discussion::find($id);
-        $discussions = $discussion->comments()->orderBy('created_at','desc')->get();;
-        return view('discussions.show',compact('discussion','discussions', 'projects'));
+        if($discussion){
+            $projects = Project::all();
+            $discussions = $discussion->comments()->orderBy('created_at','desc')->get();;
+            return view('discussions.show',compact('discussion','discussions', 'projects'));
+        }
+        else{
+            return redirect()->route('projects.index');
+        }
     }
 
     /**
