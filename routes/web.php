@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AttachersController;
-use App\Http\Controllers\DiscussionsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectsController;
-use App\Http\Controllers\DownloadFileController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\AttachersController;
+use App\Http\Controllers\DiscussionsController;
+use App\Http\Controllers\DownloadFileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('projects', ProjectsController::class);
     Route::resource('discussions', DiscussionsController::class);
 
+    // Comment System
+    Route::post('comments', [CommentsController::class,'store'] );
+    Route::post('delete-comment', [CommentsController::class,'destroy'] );
+    
+    
     Route::resource('projects.attachers', AttachersController::class);
     Route::resource('projects.discussions', DiscussionsController::class);
 
