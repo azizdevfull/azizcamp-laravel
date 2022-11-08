@@ -77,4 +77,23 @@ class CommentsController extends Controller
         }
         
     }
+
+
+    public function edit($id)
+    {
+        $comment = Comment::find($id);
+        return view('discussions.comment-edit', compact('comment'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $comment = Comment::find($id);
+        $comment->comment_body = $request->comment_body;
+        $discussion = $comment->discussion_id;
+        $comment->save();
+        return redirect()->route('discussions.show',$discussion);
+    }
+
+
 }

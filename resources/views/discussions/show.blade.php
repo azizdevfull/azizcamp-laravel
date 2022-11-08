@@ -67,7 +67,7 @@
                 <br>
                 @if (Auth::id() == $comment->user->id)
                 <div>
-                    <a href="" class="btn btn-success">Edit</a>
+                    <a href="/comment/{{ $comment->id }}/edit" class="btn btn-success">Edit</a>
                     <button type="button" value="{{ $comment->id }}" href="" class="deleteComment  btn btn-danger">Delete</button>
 
                 </div>

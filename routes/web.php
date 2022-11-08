@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth'], function(){
     // Comment System
     Route::post('comments', [CommentsController::class,'store'] );
     Route::post('delete-comment', [CommentsController::class,'destroy'] );
+    Route::get('comment/{id}/edit', [CommentsController::class,'edit'] );
+    Route::put('comment/{id}/update', [CommentsController::class,'update'] )->name('comment.update');
     
     
     Route::resource('projects.attachers', AttachersController::class);
