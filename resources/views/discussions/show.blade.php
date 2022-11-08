@@ -52,7 +52,7 @@
            </div>
 
 
-           @forelse ($discussion->comments as $comment)
+           @forelse ($discussions as $comment)
            <div class="comment-container">
 
                <label for="">@if ($comment->user)
@@ -104,7 +104,7 @@
                         success: function(res){
                             if (res.status == 200) {
                                 thisClicked.closest('.comment-container').remove();
-                                alert(res.message);
+                                // alert(res.message);
                             }else{
                                 alert(res.message);   
                             }
