@@ -16,16 +16,25 @@
                 <tr>
                     <td>{{ $discussion->title }}</td>
                     <td>{{ $discussion->description }}</td>
-                    <td>
-                        <a class="btn btn-success" href="{{ route('discussions.edit', $discussion->id) }}">Edit</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('discussions.destroy',$discussion->id) }}" method="Post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    @foreach ($projects as $project)
+                            @if($discussion->project_id == $project->id)
+
+                                @if (Auth::id() == $project->user_id){
+                                    <td>
+                                        <a class="btn btn-success" href="{{ route('discussions.edit', $discussion->id) }}">Edit</a>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('discussions.destroy',$discussion->id) }}" method="Post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                    
+                            
+                    @endif
+                    @endif
+                    @endforeach
                 </tr>
                 
         </tbody>                
