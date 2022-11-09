@@ -13,7 +13,7 @@
             <div class=" card ">
                 <div class="card__inner [ js-expander ]">
                     <a style="float: left; margin-left: -26px; margin-top: -34px;" href="{{ url('projects', $project->id) }}"><i class="bi bi-eye" style="color: black;"></i></a>
-                    <span class="span-p">{{ $project->name }}</span>
+                    <span class="span-p">{{ $project->name }}</span> <br>
                     
                     <b class="b-p">{{ $project->description }}</b>
                     <i class="fa fa-folder-o"></i>

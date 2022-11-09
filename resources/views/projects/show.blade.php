@@ -15,7 +15,7 @@
         <div class="cards">
             <div class=" card ">
                 <div class="card__inner [ js-expander ]">
-                    <a href="{{ route('projects.discussions.index',$project->id) }}"><span class="span-p">Discussions</span></a>
+                    <a href="{{ route('projects.discussions.index',$project->id) }}"><span class="span-p">Discussions</span></a> 
 
                 </div>
             </div>
