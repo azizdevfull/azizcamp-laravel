@@ -48,8 +48,14 @@
    }
 }
 .card:hover .card__inner {
-    background-color: rgb(255 201 75 / 93%);
+    background-color: rgb(255, 221, 109);
     transform: scale(1.05);
+}
+.span-p{
+    color: black;
+}
+.b-p{
+    color: black;
 }
 .card__inner {
     width: 100%;
@@ -164,4 +170,21 @@
     .card__expander {
         width: calc(200% + 30px);
    }
+}
+
+.button-new{
+    font-size: 1rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.5s;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    text-transform: none;
+    border: none;
+    background-image: linear-gradient(to right bottom, rgba(255,201,75,0.933333), #ffd300);
+    color: #32383d;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
 }
