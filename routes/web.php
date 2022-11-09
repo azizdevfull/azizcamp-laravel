@@ -37,7 +37,6 @@ Route::group(['middleware' => 'auth'], function(){
 Route::get('/', function () {
     $projects = Auth::user()->projects;
     return view('projects.index', compact('projects'));
-    // Route::get('projects.index', [ProjectsController::class, 'index']);
 
 });
 
