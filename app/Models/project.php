@@ -25,4 +25,9 @@ class project extends Model
         return $this->hasMany(Attacher::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\AttachersController;
 use App\Http\Controllers\DiscussionsController;
 use App\Http\Controllers\DownloadFileController;
+use App\Http\Controllers\TasksController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +48,11 @@ Route::group(['middleware' => 'auth'], function(){
     
     
     Route::resource('projects.attachers', AttachersController::class);
+    
+    Route::resource('projects.tasks', TasksController::class);
+    // Route::get('projects.tasks', [TasksController::class, 'index'] );
+    // Route::post('/tasks', [TasksController::class, 'store'] );
+
     Route::resource('projects.discussions', DiscussionsController::class);
 
 
