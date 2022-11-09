@@ -109,8 +109,38 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        
+        if (Auth::check()) {
+            $task = Task::where('id',$request->task_id)
+                        ->where('user_id',Auth::user()->id)
+                        ->first();
+            
+                        if ($task) {
+                            $task->delete();
+
+                            return response()->json([
+                                'status' => 200,
+                                'message' => 'Comment Deleted Successfully'
+                            ]);
+                        }
+                        else
+                        {
+                            return response()->json([
+                                'status' => 500,
+                                'message' => 'Something Went Wrong'
+                            ]);
+                        }
+
+        }
+        else    
+        {
+            return response()->json([
+                'status' => 401,
+                'message' => 'You are not allowed to delete this comment'
+            ]);
+        }
+        
     }
 }

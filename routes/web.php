@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('projects.attachers', AttachersController::class);
     
     Route::resource('projects.tasks', TasksController::class);
+    Route::post('delete-task', [TasksController::class,'destroy'] );
+
     // Route::get('projects.tasks', [TasksController::class, 'index'] );
     // Route::post('/tasks', [TasksController::class, 'store'] );
 
