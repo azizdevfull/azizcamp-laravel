@@ -11,6 +11,7 @@ use App\Http\Controllers\AttachersController;
 use App\Http\Controllers\DiscussionsController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\TasksController;
+use App\Models\project;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,6 @@ use App\Http\Controllers\TasksController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function() {
 
@@ -35,6 +32,14 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function() {
 });
 
 Route::group(['middleware' => 'auth'], function(){
+
+    
+Route::get('/', function () {
+    $projects = Auth::user()->projects;
+    return view('projects.index', compact('projects'));
+    // Route::get('projects.index', [ProjectsController::class, 'index']);
+
+});
 
    
     Route::resource('projects', ProjectsController::class);
