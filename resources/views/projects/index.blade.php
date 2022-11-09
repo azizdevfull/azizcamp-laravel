@@ -1,18 +1,28 @@
 <x-layout>
-    <h1>Projects</h1>
-
-    @foreach ($projects as $project)
+    <link rel="stylesheet" href="{{asset('css/projects.css')}}">
     
-    <h1>{{ $project->name }}</h1> <br>
-
-
-    <h3>{{ $project->description }}</h3>
-
-    <a href="{{ url('projects', $project->id) }}">Show This Project</a>
-
-    @endforeach
-
-    <br>
-     <a href="{{ url('projects/create') }}">New Project</a> 
-
+    <div class="wrapper">
+        
+        {{-- <a href="{{ url('projects', $project->id) }}">Show This Project</a> --}}
+        
+        <div class="cards">
+            @foreach ($projects as $project)
+            <div class=" card ">
+                <div class="card__inner [ js-expander ]">
+                    <a style="float: left; margin-left: -26px; margin-top: -34px;" href="{{ url('projects', $project->id) }}"><i class="bi bi-eye"></i></a>
+                    <span>{{ $project->name }}</span>
+                    
+                    <b>{{ $project->description }}</b>
+                    <i class="fa fa-folder-o"></i>
+                </div>
+                <div class="card__expander">
+                    <i class="fa fa-close [ js-collapser ]"></i>
+                </div>
+            </div>
+            @endforeach
+      
+        </div>
+      
+      </div>
+     <script src="/js/projects.js"></script>
 </x-layout>
