@@ -188,3 +188,20 @@
     padding: 1rem 2rem;
     border-radius: 1rem;
 }
+
+.button-del{
+    font-size: 1rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.5s;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    text-transform: none;
+    border: none;
+    background-image: linear-gradient(to right bottom, rgba(255,201,75,0.933333), red);
+    color: #32383d;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+}

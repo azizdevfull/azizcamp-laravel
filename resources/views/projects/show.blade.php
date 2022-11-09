@@ -1,21 +1,40 @@
 <x-layout>
-    <label for="">Project Name</label>
-    <p>{{ $project->name }}</p> <br>
-    <label for="">Project Description</label>
-    <p>{{ $project->description }}</p>
+    <link rel="stylesheet" href="{{asset('css/projects.css')}}">
 
-    <br>
-    <h1>Author : <strong>{{ $project->user->name }}</strong></h1>
-
-    <a href="/projects/{{ $project->id }}/edit">Edit Project</a>
-
+    <div class="container">
+    <h1 align="center">{{ $project->name }}</h1>
+ 
+    <a style="float: right;"  href="/projects/{{ $project->id }}/edit"><button class="button-new">Edit Project</button></a>
     <form action="{{ route('projects.destroy',$project->id) }}" method="Post">
         @csrf
         @method('DELETE')
-        <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
+        <button type="submit" onclick="return confirm('Are You Sure!')" class=" button-del">Delete</button>
     </form>
 
-    <br><br>
-    <a class="btn btn-primary" href="{{ route('projects.attachers.index',$project->id) }}">Attachments</a> <br> <br>
-    <a class="btn btn-primary mt-5" href="{{ route('projects.discussions.index',$project->id) }}">Discussions</a>
+    <div class="wrapper">
+        <div class="cards">
+            <div class=" card ">
+                <div class="card__inner [ js-expander ]">
+                    <a href="{{ route('projects.discussions.index',$project->id) }}"><span class="span-p">Discussions</span></a>
+
+                </div>
+            </div>
+
+            <div class=" card ">
+                <div class="card__inner [ js-expander ]">
+                    <a href="{{ route('projects.attachers.index',$project->id) }}"><span class="span-p">Attachments</span></a>
+                </div>
+            </div>
+
+            <div class=" card ">
+                <div class="card__inner [ js-expander ]">
+                    <a href="{{ route('projects.tasks.index',$project->id) }}"><span class="span-p">Tasks</span></a>
+                </div>
+            </div>
+            
+        </div>
+      
+      </div>
+
+    </div>
 </x-layout>

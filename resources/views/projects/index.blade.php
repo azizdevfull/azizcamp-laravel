@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{asset('css/projects.css')}}">
     
     <h1 align="center">Projects</h1> <br>
-    <a href="{{ route('projects.create') }}"><button class="button-new" >  New Project</button></a>
+    <a href="{{ route('projects.create') }}"><button class="button-new" >New Project</button></a>
     <div class="wrapper">
         
         
