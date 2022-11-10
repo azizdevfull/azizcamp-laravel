@@ -1,7 +1,10 @@
 <x-layout>
     <link rel="stylesheet" href="/css/discussion-show.css">
-    <h2 align="center">Edit Comment</h2><br><br><br>
+    <div class="container">
 
+        <a  href="{{ route('discussions.show', $comment->discussion_id) }}"><button class="dis-update">Back</button></a>
+    </div>
+    <h2 align="center">Edit Comment</h2><br><br><br>
     <div class="card-body">
     <form style="margin-left: 42%;margin-top: -65px; display: flex;flex-wrap: wrap;" action="{{ route('comment.update', $comment->id) }}" method="POST">
             @csrf
@@ -16,11 +19,4 @@
             </div>
         </form>
        </div>
-
-    {{-- <form action="{{ route('comment.update', $comment->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <input type="text" name="comment_body" value="{{ $comment->comment_body }}">
-        <input type="submit" value="Update Comment" class="btn btn-primary">
-    </form> --}}
 </x-layout>
