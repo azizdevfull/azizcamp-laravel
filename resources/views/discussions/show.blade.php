@@ -1,91 +1,74 @@
 <x-layout>
-    <h1 align="center" class="mt-5">Show Discussion</h1>
-
-
-    <table border="1px" align="center" width="1000px">
-        <thead >
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
-
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
-                    <td>{{ $discussion->title }}</td>
-                    <td>{{ $discussion->description }}</td>
+    <link rel="stylesheet" href="/css/discussion-show.css">
+    <h2 align="center" class="mt-5">{{ $discussion->title }}</h2>
+                   
+                   {{-- {{ $discussion->description }} --}}
                     @foreach ($projects as $project)
                             @if($discussion->project_id == $project->id)
 
                                 @if (Auth::id() == $project->user_id)
-                                    <td>
-                                        <a class="btn btn-success" href="{{ route('discussions.edit', $discussion->id) }}">Edit</a>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('discussions.destroy',$discussion->id) }}" method="Post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('Are You Sure!')" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                    
-                            
+                                <div>
+
+                                    <a  href="{{ route('discussions.edit', $discussion->id) }}"> <button class="dis-update"> Edit</button></a>
+                                    <form action="{{ route('discussions.destroy',$discussion->id) }}" method="Post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button style="float: right;margin-top: -56px;" class="dis-delete" type="submit" onclick="return confirm('Are You Sure!')" >Delete</button>
+                                    </form>
+                                </div>
                     @endif
                     @endif
                     @endforeach
-                </tr>
-                
-        </tbody>                
-
-    </table>
-
-    <br>
-<br>
-<br>
+          
 
     
         <div class="card-body">
-            <h5>Leave a comment</h5>
-            <form  action="{{ url('comments') }}" method="POST">
+            <form style="margin-left: 42%;margin-top: -65px; display: flex;flex-wrap: wrap;" action="{{ url('comments') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <input type="hidden" name="discussion_id" value="{{ $discussion->id }}">
-                    <textarea name="comment_body" rows="3" required></textarea>
+                    <input class="comment-in form-control" name="comment_body" rows="3" required>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" value="Add Comment" />
+                    <input type="submit" class="comment-but" style="font-size: 0.8em;" value="Add Comment" />
                 </div>
             </form>
            </div>
 
 
-           @forelse ($discussions as $comment)
-           <div class="comment-container">
 
-               <label for="">@if ($comment->user)
-                {{ $comment->user->name }}
-                @endif</label>
-                <h3>{{ $comment->comment_body }}</h3> 
-                
-                <p> Created At: 
-                    <b>{{ $comment->created_at->format('d-m-y') }}</b>
-                </p>
+           <div class="comments-container">
 
-                <br>
-                @if (Auth::id() == $comment->user->id)
-                <div>
-                    <a href="/comment/{{ $comment->id }}/edit" class="btn btn-success">Edit</a>
-                    <button type="button" value="{{ $comment->id }}" href="" class="deleteComment  btn btn-danger">Delete</button>
 
-                </div>
-                @endif
+            <ul id="comments-list" class="comments-list">
+                <li>
+                    @foreach ($discussions as $comment)
+                    <div class="comment-main-level">
+                        <!-- Avatar -->
+                        {{-- <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div> --}}
+                        <!-- Contenedor del Comentario -->
+                        <div class="comment-box">
+                            <div class="comment-head">
+                                <h6 class="comment-name by-author"><a>@if ($comment->user){{ $comment->user->name }}@endif</a></h6>
+                                {{-- <span>{{ $comment->created_at->format('d-m-y') }}</span> --}}
+                                @if (Auth::id() == $comment->user->id)
+                                <a href="/comment/{{ $comment->id }}/edit"><i class="bi bi-pen"></i></a>
+                                <button style="width: 0;height: 0;float: right;" type="button" value="{{ $comment->id }}" class="deleteComment"><i class="bi bi-trash2-fill"></i></button>
+                                @endif
+                            </div>
+                            <div class="comment-content">{{ $comment->comment_body }} </div>
+                        </div>
+                    </div>
+                    
+                    <br />
+                    @endforeach
+                              
 
-            </div>
-           @empty
-           <h6>No Comment Yet.</h6>
-           @endforelse
+                    </div>
+                    
+            </ul>
+        </div>
+          
 
 
            <script>
@@ -112,7 +95,7 @@
                         },
                         success: function(res){
                             if (res.status == 200) {
-                                thisClicked.closest('.comment-container').remove();
+                                thisClicked.closest('.comment-box').remove();
                                 // alert(res.message);
                             }else{
                                 alert(res.message);   
