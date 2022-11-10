@@ -330,3 +330,17 @@ i{
     font-weight: 600;
     transition: all 0.5s;
 }
+
+.task-list{
+   width: 90%;
+   margin: 2rem auto 0 auto;
+   list-style: none;
+   padding: 1rem 2rem;
+   border-radius: 0.5rem;
+   border-left: 15px solid #fd5619be;
+   background-color: #ffffff;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   box-shadow: 0 0 10px #dddcdc;
+}

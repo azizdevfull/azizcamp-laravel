@@ -1,24 +1,39 @@
 <x-layout>
-    <h1 align="center">Tasks</h1>
+    <link rel="stylesheet" href="/css/discussion-show.css">
+
+    <h1 align="center">Tasks</h1> <br>
   
-    <form action="{{ route("projects.tasks.store", $project->id) }}" method="POST" >
-        @csrf
-        <input type="text" name="body"><br>
-    
-        <button type="submit" class="btn btn-info">Create Task</button>
-        
+    <a style="margin-left: 50px;" href=" {{ route('projects.show',  $project->id) }} "><button class="dis-delete">Back</button></a>
+
+    <div class="card-body">
+        <form style="margin-left: 42%;margin-top: -65px; display: flex;flex-wrap: wrap;" action="{{ route("projects.tasks.store", $project->id) }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <input class="comment-in form-control" name="body" rows="3" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="comment-but" style="font-size: 0.8em;" value="Create Task" />
+            </div>
+        </form>
+       </div>
     </form>
 
-<div class="task-div">
+    <div class="container">
+        <div class="tester">
 
-    @foreach ($tasks as $task)
-    
-    <h1>{{ $task->body }}</h1>
-    <a class="btn btn-success" href="{{ route('projects.tasks.edit', [$task->project_id, $task->id]) }}">Edit</a>
-    <button type="button" value="{{ $task->id }}" class="deleteTask  btn btn-danger">Delete</button>
-    
-    @endforeach
-</div>
+            @foreach ($tasks as $task)
+            <div class="task-div task-list" align="center" style="">
+                
+                <h2>{{ $task->body }}</h2>
+                <a style="margin-right: -472px;"  href="{{ route('projects.tasks.edit', [$task->project_id, $task->id]) }}"><button class="dis-update">Edit</button></a>
+                <button type="button" value="{{ $task->id }}" class="deleteTask dis-delete">Delete</button>
+                
+                
+            </div>
+            @endforeach
+        </div>
+            </div>
+
 
     
 
