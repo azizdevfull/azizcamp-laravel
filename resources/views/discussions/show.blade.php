@@ -21,7 +21,7 @@
                                     @endif
                                     @endif
                                     @endforeach
-                                    <a style="float: right; margin-right: 8px;" href="{{ route('projects.discussions.index', $project->id, $discussion->id) }}">Back</a>
+                                    <a  style="float: right; margin-right: 8px;" href="{{ route('projects.discussions.index', $project->id, $discussion->id) }}"><button class="dis-delete mt-2">Back</button></a>
                                         
           
     
