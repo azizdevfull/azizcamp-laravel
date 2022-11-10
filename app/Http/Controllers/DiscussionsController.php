@@ -84,7 +84,8 @@ class DiscussionsController extends Controller
     public function edit($id)
     {
         $discussion = Discussion::find($id);
-        return view('discussions.edit', compact('discussion'));
+        $project = $discussion->project_id;
+        return view('discussions.edit', compact('discussion','project'));
     }
 
     /**
