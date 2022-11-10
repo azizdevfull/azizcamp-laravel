@@ -21,7 +21,7 @@
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
           <li><a href="/" class="link link-theme link-arrow">HOME</a></li>
-          <li><a href="#two" class="link link-theme link-arrow">SERVICE</a></li>
+          {{-- <li><a href="#two" class="link link-theme link-arrow"></a></li> --}}
           <li><a href="/profile" class="link link-theme link-arrow">{{Auth::user()->name}}</a></li>
           <li>
             <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
