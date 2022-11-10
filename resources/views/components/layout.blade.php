@@ -397,7 +397,7 @@ h1,h2,h3,h4,h5,h6 {
           <li><a href="#one" class="link link-theme link-arrow">HOME</a></li>
           <li><a href="#two" class="link link-theme link-arrow">SERVICE</a></li>
           <li><a href="#three" class="link link-theme link-arrow">ABOUT US</a></li>
-          <li><a href="#four" class="link link-theme link-arrow">CONTACT</a></li>
+          <li><a href="#four" class="link link-theme link-arrow">{{Auth::user()->name}}</a></li>
         </ul>
       </header>
       <div id="main" class="main">
