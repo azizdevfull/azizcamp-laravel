@@ -1,13 +1,12 @@
 <x-layout>
     <link rel="stylesheet" href="/css/discussion-show.css">
-    <h2 align="center" class="mt-5">{{ $discussion->title }}</h2>
+    <h2 align="center" style="margin-top: -50px" class="mt-5">{{ $discussion->title }}</h2>
                    
                    {{-- {{ $discussion->description }} --}}
                     @foreach ($projects as $project)
                             @if($discussion->project_id == $project->id)
 
                                 @if (Auth::id() == $project->user_id)
-                                <div>
 
                                     <a  href="{{ route('discussions.edit', $discussion->id) }}"> <button class="dis-update"> Edit</button></a>
                                     <form action="{{ route('discussions.destroy',$discussion->id) }}" method="Post">
@@ -15,10 +14,13 @@
                                         @method('DELETE')
                                         <button style="float: right;margin-top: -56px;" class="dis-delete" type="submit" onclick="return confirm('Are You Sure!')" >Delete</button>
                                     </form>
-                                </div>
-                    @endif
-                    @endif
-                    @endforeach
+                                    @else
+                                    <a  > <button class="dis-update"> </button></a>
+                                        <button style="float: right;margin-top: -56px;" class="dis-delete" ></button>
+                                    
+                                        @endif
+                                        @endif
+                                        @endforeach
           
 
     
