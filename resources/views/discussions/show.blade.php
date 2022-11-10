@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/css/discussion-show.css">
     <h2 align="center" style="margin-top: -50px" class="mt-5">{{ $discussion->title }}</h2>
                    
-                   {{-- {{ $discussion->description }} --}}
+                   
                     @foreach ($projects as $project)
                             @if($discussion->project_id == $project->id)
 
@@ -16,13 +16,14 @@
                                     </form>
                                     @else
                                     <a  > <button class="dis-update"> </button></a>
-                                        <button style="float: right;margin-top: -56px;" class="dis-delete" ></button>
+                                    <button style="float: right;margin-top: -56px;" class="dis-delete" ></button>
                                     
-                                        @endif
-                                        @endif
-                                        @endforeach
+                                    @endif
+                                    @endif
+                                    @endforeach
+                                    <a style="float: right; margin-right: 8px;" href="{{ route('projects.discussions.index', $project->id, $discussion->id) }}">Back</a>
+                                        
           
-
     
         <div class="card-body">
             <form style="margin-left: 42%;margin-top: -65px; display: flex;flex-wrap: wrap;" action="{{ url('comments') }}" method="POST">
