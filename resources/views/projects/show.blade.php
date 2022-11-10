@@ -4,7 +4,9 @@
     <div class="container">
     <h1 align="center">{{ $project->name }}</h1>
  
-    <a style="float: right;"  href="/projects/{{ $project->id }}/edit"><button class="button-new">Edit Project</button></a>
+    <a style="float: right;margin-top: 56px;"  href="/projects/{{ $project->id }}/edit"><button class="button-new">Edit Project</button></a>
+    <a style="margin-left: 44%;" href="{{ route('projects.index') }}"><button class="button-new" >Back</button></a>
+
     <form action="{{ route('projects.destroy',$project->id) }}" method="Post">
         @csrf
         @method('DELETE')

@@ -4,6 +4,8 @@
     
     <h1 align="center" style="margin-top: -75px;">Discussions</h1> <br>
     <a href="{{ route('projects.discussions.create', $project->id) }}"><button class="button-new" >New Discussion</button></a>
+    <a style="float: right;" href="{{ route('projects.show', $project->id) }}"><button class="button-new" >Back</button></a>
+
     <div class="wrapper">
         
         
