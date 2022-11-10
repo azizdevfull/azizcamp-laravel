@@ -32,7 +32,7 @@
             <input style="color: black;" id="new_password" class="block mt-1 w-full"
                                              type="password"
                                              name="password"
-                                             autocomplete="new-password" minlength="8" required/>
+                                             autocomplete="new-password" minlength="8" />
             <label style="color: #dc3545;">New Password</label>
           </div>
           <div class="user-box">
@@ -45,10 +45,10 @@
             <input style="color: black;" id="confirm_password"
                                              type="password"
                                              name="password_confirmation"
-                                             autocomplete="confirm-password" required />
+                                             autocomplete="confirm-password" minlength="8" />
             <label style="color: #dc3545;">Confirm Password</label>
           </div>
-          <input type="submit" value="Create Project" class="button-update">
+          <input type="submit" value="Update My Profile" class="button-update">
           {{-- <x-button class=">
             {{ __('Update') }}
         </x-button> --}}
