@@ -1,13 +1,44 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+{{-- <x-guest-layout> --}}
+    <br><br><br>
+        <h1 align="center" class="mt-5">My Basecamp</h1>
+  
+    <link rel="stylesheet" href="/css/projects-edit.css">
+
+    
+    <div style="color: black;" class="login-box">
+        <h2 style="color: black;" >Log In</h2>
+        
+        @if (session('message'))
+        <div>
+
+            {{ __('Success') }}
+            {{ session('message') }} 
+        </div><br>
+@endif
+<form method="POST" action="{{ route('login') }}">
+    @csrf
+          <div class="user-box">
+            <input style="color:black;" id="email" type="email" name="email" required autofocus />
+            <label style="color: #dc3545;">User Email</label>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+          </div>
+          <div class="user-box">
+            <input style="color: black;" id="password" class="block mt-1 w-full"
+                                             type="password"
+                                             name="password"
+                                             autocomplete="current-password" minlength="8" required/>
+
+            <label style="color: #dc3545;">Password</label>
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+          </div>
+          <input type="submit" value="Login" class="button-update">
+        </form>
+        <a style="float: right;margin-top: -42px;" href="/register" >Sign Up</a>
+
+      </div>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        {{-- <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -54,4 +85,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-guest-layout> --}}

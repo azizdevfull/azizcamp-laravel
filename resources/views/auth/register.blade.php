@@ -1,15 +1,60 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<br><br><br>
+    <h1 align="center">My Basecamp</h1>
+    
+    <link rel="stylesheet" href="/css/projects-edit.css">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    
+    <div style="color: black;" class="login-box">
+        <h2 style="color: black;" >Sign Up</h2>
+        
+        @if (session('message'))
+        <div>
 
-            <!-- Name -->
+            {{ __('Success') }}
+            {{ session('message') }} 
+        </div><br>
+@endif
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+          <div class="user-box">
+            <input style="color: black;" id="name" type="text" name="name" required autofocus />
+            <label style="color: #dc3545;">User Name</label>
+          </div>
+          <div class="user-box">
+            <input style="color:black;" id="email" type="email" name="email" required autofocus />
+
+            <label style="color: #dc3545;">User Email</label>
+          </div>
+          <div class="user-box">
+            <input style="color: black;" id="password" class="block mt-1 w-full"
+                                             type="password"
+                                             name="password"
+                                             autocomplete="new-password" minlength="8" required/>
+
+                                             {{-- <x-text-input id="password" class="block mt-1 w-full"
+                                             type="password"
+                                             name="password"
+                                             required autocomplete="new-password" minlength="8" required/> --}}
+            <label style="color: #dc3545;">Password</label>
+          </div>
+          <div class="user-box">
+            <input style="color: black;" id="password_confirmation"
+                                             type="password"
+                                             name="password_confirmation"
+                                             min="8" required />
+            <label style="color: #dc3545;">Confirm Password</label>
+
+          </div>
+          <input type="submit" value="Sign Up" class="button-update">
+        </form>
+        <a style="float: right;margin-top: -42px;" href="/login" >Log In</a>
+
+      </div>
+
+
+       
+
+            {{-- <!-- Name -->
             <div>
                 <x-input-label for="name" :value="__('Name')" />
 
@@ -59,6 +104,4 @@
                     {{ __('Register') }}
                 </x-primary-button>
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </form> --}}
