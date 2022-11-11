@@ -38,7 +38,7 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $project = new Project;
+        $project = new project;
         $project->name = $request->name;
         $project->description = $request->description;
         $project->user_id = Auth::id();
